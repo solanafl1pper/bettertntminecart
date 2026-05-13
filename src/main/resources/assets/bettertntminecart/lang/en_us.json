@@ -1,0 +1,19 @@
+{
+  "config.bettertntminecart.title": "BetterTNTMinecart Config",
+  "config.bettertntminecart.cat.hitbox": "Hitbox",
+  "config.bettertntminecart.cat.label": "Label",
+  "config.bettertntminecart.show_hitbox": "Show Hitbox",
+  "config.bettertntminecart.hitbox_rgb_mode": "Rainbow RGB",
+  "config.bettertntminecart.hitbox_rgb_speed": "RGB Speed",
+  "config.bettertntminecart.hitbox_color": "Hitbox Color",
+  "config.bettertntminecart.hitbox_alpha": "Hitbox Opacity",
+  "config.bettertntminecart.hitbox_line_width": "Line Width",
+  "config.bettertntminecart.show_label": "Show Label",
+  "config.bettertntminecart.label_text": "Label Text",
+  "config.bettertntminecart.label_text.tooltip1": "Supports MiniMessage gradient format from Birdflop.",
+  "config.bettertntminecart.label_text.tooltip2": "Go to: https://rgb.birdflop.com",
+  "config.bettertntminecart.label_text.tooltip3": "Set format to MiniMessage, copy the output,",
+  "config.bettertntminecart.label_text.tooltip4": "and paste it here. Example: <gradient:#ff0000:#0000ff>Cart</gradient>",
+  "key.bettertntminecart.open_config": "Open Config",
+  "category.bettertntminecart": "BetterTNTMinecart"
+}

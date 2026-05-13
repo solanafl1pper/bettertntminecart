@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "solana.flipper.client.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"ExampleClientMixin",
+		"AbstractMinecartRendererMixin",
+		"TntMinecartExtractStateMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
