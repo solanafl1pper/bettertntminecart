@@ -51,7 +51,7 @@ Client-side only. Works on any server without server-side installation.
 
 ## License
 
-CC0-1.0
+MIT License
 =======
 # bettertntminecart
 source's of mod - Better TNT Minecart
