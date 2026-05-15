@@ -35,16 +35,6 @@ All settings are available through a Cloth Config screen. Open it via the ModMen
 4. Download [ModMenu](https://modrinth.com/mod/modmenu) (optional)
 5. Drop all jars into your `.minecraft/mods` folder
 
-## Building from source
-
-```bash
-git clone https://github.com/solanaflipper/bettertntminecart.git
-cd bettertntminecart
-./gradlew build
-```
-
-The output jar will be in `build/libs/`.
-
 ## Compatibility
 
 Client-side only. Works on any server without server-side installation.
