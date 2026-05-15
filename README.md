@@ -49,10 +49,4 @@ The output jar will be in `build/libs/`.
 
 Client-side only. Works on any server without server-side installation.
 
-## License
-
-MIT License
-=======
-# bettertntminecart
-source's of mod - Better TNT Minecart
 >>>>>>> dc2cec554f8f31423ebefbec514ef6c3041e7eba
