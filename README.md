@@ -1,6 +1,13 @@
 # BetterTNTMinecart
 
-A client-side Fabric mod for Minecraft 1.21+ that gives you full visual control over TNT minecarts.
+A client-side Fabric mod for Minecraft (1.21.x – 26.3) that gives you full visual control over TNT minecarts.
+
+## Supported Versions
+
+| Minecraft Version | Branch | Java Version | Toolchain |
+|---|---|---|---|
+| **26.3** (26.1 – 26.3) | `main` | Java 25 | Loom 1.19.2 (Unobfuscated) |
+| **1.21.x** (1.21 – 1.21.11) | `1.21.x` (`master`) | Java 21 | Loom 1.16/1.17 (Remapped) |
 
 ## Features
 
@@ -20,7 +27,7 @@ All settings are available through a Cloth Config screen. Open it via the ModMen
 
 | Dependency | Version |
 |---|---|
-| Minecraft | 1.21.x |
+| Minecraft | 1.21.x – 26.3 |
 | Fabric Loader | 0.19+ |
 | Fabric API | any |
 | Cloth Config | any |
