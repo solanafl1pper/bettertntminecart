@@ -9,17 +9,17 @@ group = 'solana.flipper'
 version = '1.0.1'
 
 base {
-    archivesName = 'bettertntminecart-forge-1.20.1'
+    archivesName = 'bettertntminecart-forge-1.16.5'
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(8)
     }
 }
 
 minecraft {
-    mappings channel: 'official', version: '1.20.1'
+    mappings channel: 'official', version: '1.16.5'
     copyIdeResources = true
 }
 
@@ -35,9 +35,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:11.1.118")
+    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:4.17.132")
 }
 
 tasks.named('jar', Jar).configure {

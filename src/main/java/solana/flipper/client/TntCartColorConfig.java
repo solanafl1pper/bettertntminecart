@@ -8,11 +8,12 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class TntCartColorConfig {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final Path CONFIG_PATH = Path.of("config", "bettertntminecart.json");
+    private static final Path CONFIG_PATH = Paths.get("config", "bettertntminecart.json");
 
     private static TntCartColorConfig instance = new TntCartColorConfig();
     public static TntCartColorConfig get() { return instance; }

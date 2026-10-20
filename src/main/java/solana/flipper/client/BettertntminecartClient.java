@@ -1,24 +1,18 @@
 package solana.flipper.client;
 
-import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ConfigScreenHandler;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import solana.flipper.Bettertntminecart;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class BettertntminecartClient {
 
-    public static final KeyMapping openConfigKey = new KeyMapping(
+    public static final KeyBinding openConfigKey = new KeyBinding(
             "key.bettertntminecart.open_config",
-            InputConstants.UNKNOWN.getValue(),
+            -1,
             "key.categories.misc"
     );
 
@@ -26,18 +20,14 @@ public class BettertntminecartClient {
         TntCartColorConfig.load();
         try {
             ModLoadingContext.get().registerExtensionPoint(
-                    ConfigScreenHandler.ConfigScreenFactory.class,
-                    () -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> TntCartConfigScreen.create(parent))
+                    ExtensionPoint.CONFIGGUIFACTORY,
+                    () -> (client, parent) -> TntCartConfigScreen.create(parent)
             );
         } catch (Throwable ignored) {
         }
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(BettertntminecartClient::onRegisterKeyMappings);
+        ClientRegistry.registerKeyBinding(openConfigKey);
         MinecraftForge.EVENT_BUS.addListener(BettertntminecartClient::onClientTick);
-    }
-
-    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
-        event.register(openConfigKey);
     }
 
     public static void onClientTick(TickEvent.ClientTickEvent event) {

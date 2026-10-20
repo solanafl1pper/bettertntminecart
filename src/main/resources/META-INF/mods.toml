@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[47,)"
+loaderVersion="[36,)"
 license="CC0-1.0"
 
 [[mods]]
@@ -12,19 +12,19 @@ authors="solanaflipper"
 [[dependencies.bettertntminecart]]
 modId="forge"
 mandatory=true
-versionRange="[47,)"
+versionRange="[36,)"
 ordering="NONE"
 side="CLIENT"
 
 [[dependencies.bettertntminecart]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.20.1,1.20.2)"
+versionRange="[1.16.5,1.17)"
 ordering="NONE"
 side="CLIENT"
 
 [[dependencies.bettertntminecart]]
-modId="cloth_config"
+modId="cloth-config"
 mandatory=false
 versionRange="*"
 ordering="NONE"
