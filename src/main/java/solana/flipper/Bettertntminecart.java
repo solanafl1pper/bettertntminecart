@@ -1,13 +1,18 @@
 package solana.flipper;
 
-import net.fabricmc.api.ModInitializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
+import solana.flipper.client.BettertntminecartClient;
 
-public class Bettertntminecart implements ModInitializer {
-	public static final String MOD_ID = "bettertntminecart";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+@Mod(Bettertntminecart.MODID)
+public class Bettertntminecart {
+    public static final String MODID = "bettertntminecart";
 
-	@Override
-	public void onInitialize() {}
+    public Bettertntminecart(IEventBus modEventBus) {
+        if (FMLEnvironment.getDist() == Dist.CLIENT) {
+            BettertntminecartClient.init(modEventBus);
+        }
+    }
 }

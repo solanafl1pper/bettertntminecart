@@ -2,7 +2,6 @@ package solana.flipper.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -13,8 +12,7 @@ import java.nio.file.Path;
 public final class TntCartColorConfig {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final Path CONFIG_PATH =
-            FabricLoader.getInstance().getConfigDir().resolve("bettertntminecart.json");
+    private static final Path CONFIG_PATH = Path.of("config", "bettertntminecart.json");
 
     private static TntCartColorConfig instance = new TntCartColorConfig();
     public static TntCartColorConfig get() { return instance; }
@@ -66,8 +64,13 @@ public final class TntCartColorConfig {
     }
 
     public static void save() {
-        try (Writer w = Files.newBufferedWriter(CONFIG_PATH)) {
-            GSON.toJson(instance, w);
+        try {
+            if (CONFIG_PATH.getParent() != null) {
+                Files.createDirectories(CONFIG_PATH.getParent());
+            }
+            try (Writer w = Files.newBufferedWriter(CONFIG_PATH)) {
+                GSON.toJson(instance, w);
+            }
         } catch (IOException e) {}
     }
 }
