@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[4,)"
+loaderVersion="[47,)"
 license="CC0-1.0"
 
 [[mods]]
@@ -9,26 +9,23 @@ displayName="BetterTNTMinecart"
 description="Recolor your cart like u want"
 authors="solanaflipper"
 
-[[mixins]]
-config="bettertntminecart.mixins.json"
-
 [[dependencies.bettertntminecart]]
-modId="neoforge"
-type="required"
-versionRange="[26.3,)"
+modId="forge"
+mandatory=true
+versionRange="[47,)"
 ordering="NONE"
 side="CLIENT"
 
 [[dependencies.bettertntminecart]]
 modId="minecraft"
-type="required"
-versionRange="[26.3,)"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
 ordering="NONE"
 side="CLIENT"
 
 [[dependencies.bettertntminecart]]
 modId="cloth_config"
-type="required"
+mandatory=false
 versionRange="*"
 ordering="NONE"
 side="CLIENT"
