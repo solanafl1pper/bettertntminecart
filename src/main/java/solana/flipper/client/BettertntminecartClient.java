@@ -3,16 +3,11 @@ package solana.flipper.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ConfigScreenHandler;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import solana.flipper.Bettertntminecart;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.common.NeoForge;
 
 public class BettertntminecartClient {
 
@@ -22,32 +17,28 @@ public class BettertntminecartClient {
             "key.categories.misc"
     );
 
-    public static void init() {
+    public static void init(IEventBus modEventBus) {
         TntCartColorConfig.load();
         try {
-            ModLoadingContext.get().registerExtensionPoint(
-                    ConfigScreenHandler.ConfigScreenFactory.class,
-                    () -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> TntCartConfigScreen.create(parent))
-            );
+            net.neoforged.fml.ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class,
+                    () -> (client, parent) -> TntCartConfigScreen.create(parent));
         } catch (Throwable ignored) {
         }
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(BettertntminecartClient::onRegisterKeyMappings);
-        MinecraftForge.EVENT_BUS.addListener(BettertntminecartClient::onClientTick);
+        modEventBus.addListener(BettertntminecartClient::onRegisterKeyMappings);
+        NeoForge.EVENT_BUS.addListener(BettertntminecartClient::onClientTick);
     }
 
-    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+    private static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
         event.register(openConfigKey);
     }
 
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            TntCartColorConfig.get().tick();
-            while (openConfigKey.consumeClick()) {
-                Minecraft client = Minecraft.getInstance();
-                if (client.screen == null) {
-                    client.setScreen(TntCartConfigScreen.create(null));
-                }
+    private static void onClientTick(ClientTickEvent.Post event) {
+        TntCartColorConfig.get().tick();
+        while (openConfigKey.consumeClick()) {
+            Minecraft client = Minecraft.getInstance();
+            if (client.screen == null) {
+                client.setScreen(TntCartConfigScreen.create(null));
             }
         }
     }

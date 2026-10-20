@@ -1,56 +1,38 @@
 plugins {
-    id 'eclipse'
-    id 'idea'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
-group = 'solana.flipper'
 version = '1.0.1'
+group = 'solana.flipper'
 
 base {
-    archivesName = 'bettertntminecart-forge-1.20.1'
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
-minecraft {
-    mappings channel: 'official', version: '1.20.1'
-    copyIdeResources = true
-}
-
-mixin {
-    add sourceSets.main, "bettertntminecart.refmap.json"
-    config "bettertntminecart.mixins.json"
+    archivesName = 'bettertntminecart-neoforge-1.21.1'
 }
 
 repositories {
-    maven { url = 'https://maven.minecraftforge.net/' }
     maven { url = 'https://maven.shedaniel.me/' }
     mavenCentral()
 }
 
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:11.1.118")
+neoForge {
+    version = '21.1.72'
+
+    mods {
+        bettertntminecart {
+            sourceSet sourceSets.main
+        }
+    }
 }
 
-tasks.named('jar', Jar).configure {
-    manifest {
-        attributes([
-            "Specification-Title"     : "bettertntminecart",
-            "Specification-Vendor"    : "solanafl1pper",
-            "Specification-Version"   : "1",
-            "Implementation-Title"    : project.name,
-            "Implementation-Version"  : project.jar.archiveVersion,
-            "Implementation-Vendor"   : "solanafl1pper",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs"            : "bettertntminecart.mixins.json"
-        ])
-    }
+dependencies {
+    implementation 'me.shedaniel.cloth:cloth-config-neoforge:15.0.140'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }

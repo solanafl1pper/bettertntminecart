@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import solana.flipper.client.MiniMessageParser;
 import solana.flipper.client.TntCartColorConfig;
 
 @Mixin(MinecartRenderer.class)
@@ -57,8 +56,7 @@ public abstract class MinecartRendererMixin<T extends AbstractMinecart> extends 
         }
 
         if (cfg.showLabel) {
-            Component text = MiniMessageParser.parse(cfg.labelText);
-            this.renderNameTag(entity, text, poseStack, buffer, packedLight);
+            this.renderNameTag(entity, Component.literal(cfg.labelText), poseStack, buffer, packedLight, partialTicks);
         }
     }
 }

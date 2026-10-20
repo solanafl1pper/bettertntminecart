@@ -47,13 +47,7 @@ public final class TntCartConfigScreen {
 
         label.addEntry(eb.startStrField(Component.translatable("config.bettertntminecart.label_text"), cfg.labelText)
                 .setDefaultValue("Cart")
-                .setTooltip(
-                    Component.translatable("config.bettertntminecart.label_text.tooltip1"),
-                    Component.translatable("config.bettertntminecart.label_text.tooltip2"),
-                    Component.translatable("config.bettertntminecart.label_text.tooltip3"),
-                    Component.translatable("config.bettertntminecart.label_text.tooltip4")
-                )
-                .setSaveConsumer(v -> cfg.labelText = v.isEmpty() ? "Cart" : v).build());
+                .setSaveConsumer(s -> cfg.labelText = s).build());
 
         return builder.build();
     }
