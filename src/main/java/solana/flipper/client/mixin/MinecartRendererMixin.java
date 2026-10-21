@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MinecartRenderer;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.entity.vehicle.MinecartTNT;
 import net.minecraft.world.phys.AABB;
@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import solana.flipper.client.MiniMessageParser;
 import solana.flipper.client.TntCartColorConfig;
 
 @Mixin(MinecartRenderer.class)
@@ -57,8 +56,7 @@ public abstract class MinecartRendererMixin<T extends AbstractMinecart> extends 
         }
 
         if (cfg.showLabel) {
-            Component text = MiniMessageParser.parse(cfg.labelText);
-            this.renderNameTag(entity, text, poseStack, buffer, packedLight);
+            this.renderNameTag(entity, new TextComponent(cfg.labelText), poseStack, buffer, packedLight);
         }
     }
 }

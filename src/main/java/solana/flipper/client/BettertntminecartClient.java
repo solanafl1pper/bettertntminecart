@@ -3,16 +3,11 @@ package solana.flipper.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ConfigScreenHandler;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.ConfigGuiHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import solana.flipper.Bettertntminecart;
 
 public class BettertntminecartClient {
 
@@ -26,18 +21,14 @@ public class BettertntminecartClient {
         TntCartColorConfig.load();
         try {
             ModLoadingContext.get().registerExtensionPoint(
-                    ConfigScreenHandler.ConfigScreenFactory.class,
-                    () -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> TntCartConfigScreen.create(parent))
+                    ConfigGuiHandler.ConfigGuiFactory.class,
+                    () -> new ConfigGuiHandler.ConfigGuiFactory((client, parent) -> TntCartConfigScreen.create(parent))
             );
         } catch (Throwable ignored) {
         }
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(BettertntminecartClient::onRegisterKeyMappings);
+        ClientRegistry.registerKeyBinding(openConfigKey);
         MinecraftForge.EVENT_BUS.addListener(BettertntminecartClient::onClientTick);
-    }
-
-    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
-        event.register(openConfigKey);
     }
 
     public static void onClientTick(TickEvent.ClientTickEvent event) {
